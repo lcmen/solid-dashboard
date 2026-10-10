@@ -15,5 +15,6 @@ jobs:
           MISE_NO_HOOKS: "1"
       - run: bundle install
       - run: mise exec -- hk check --all
-      - run: ruby -Ilib -rsolid_dashboard -e 'puts SolidDashboard::VERSION'
+      - run: ASSET_PIPELINE=sprockets bundle exec rake test
+      - run: bundle exec ruby -Ilib -rsolid_dashboard -e 'puts SolidDashboard::VERSION'
       - run: gem build solid_dashboard.gemspec
