@@ -1,0 +1,16 @@
+[tools]
+ruby = "latest"
+hk = "2.0.1"
+
+[hooks]
+postinstall = "hk install --mise"
+
+[tasks.fix]
+run = "bundle exec standardrb --fix"
+
+[tasks.lint]
+run = "bundle exec standardrb"
+
+[tasks.pre-commit]
+run = "hk run pre-commit"
+
