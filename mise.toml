@@ -1,9 +1,14 @@
 [tools]
+hk = "latest"
 ruby = "latest"
-hk = "2.0.1"
+"gem:foreman" = "latest"
 
 [hooks]
 postinstall = ["bundle install", "hk install --mise"]
+
+[tasks.development]
+description = "Start the dummy Rails application"
+run = 'test/dummy/bin/dev "$@"'
 
 [tasks.fix]
 run = "bundle exec standardrb --fix"
@@ -21,7 +26,7 @@ run = '''
 set -eu
 
 notes="$*"
-version=$(ruby -Ilib -rsolid_dashboard -e 'print SolidDashboard::VERSION')
+version=$(bundle exec ruby -Ilib -rsolid_dashboard -e 'print SolidDashboard::VERSION')
 prerelease=$(ruby -rrubygems -e 'puts Gem::Version.new(ARGV.fetch(0)).prerelease?' "$version")
 
 flags=()
@@ -31,6 +36,7 @@ fi
 if [ -n "$notes" ]; then
   flags+=(--notes "$notes")
 fi
+SECRET_KEY_BASE_DUMMY=1 RAILS_ENV=production bundle exec rake solid_dashboard:assets:build
 gem build solid_dashboard.gemspec
 git tag -a "v$version" -m "Release $version"
 git push origin "v$version"
