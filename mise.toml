@@ -3,7 +3,7 @@ ruby = "latest"
 hk = "2.0.1"
 
 [hooks]
-postinstall = "hk install --mise"
+postinstall = ["bundle install", "hk install --mise"]
 
 [tasks.fix]
 run = "bundle exec standardrb --fix"
@@ -13,4 +13,32 @@ run = "bundle exec standardrb"
 
 [tasks.pre-commit]
 run = "hk run pre-commit"
+
+[tasks.release]
+description = "Build the gem and publish it to GitHub and RubyGems"
+run = '''
+#!/usr/bin/env bash
+set -eu
+
+notes="$*"
+version=$(ruby -Ilib -rsolid_dashboard -e 'print SolidDashboard::VERSION')
+prerelease=$(ruby -rrubygems -e 'puts Gem::Version.new(ARGV.fetch(0)).prerelease?' "$version")
+
+flags=()
+if [ "$prerelease" = "true" ]; then
+  flags+=(--prerelease)
+fi
+if [ -n "$notes" ]; then
+  flags+=(--notes "$notes")
+fi
+gem build solid_dashboard.gemspec
+git tag -a "v$version" -m "Release $version"
+git push origin "v$version"
+gh release create "v$version" \
+                  "solid_dashboard-$version.gem" \
+                  --verify-tag \
+                  --title "$version" \
+                  --generate-notes "${flags[@]}"
+gem push "solid_dashboard-$version.gem" --host https://rubygems.org
+'''
 
