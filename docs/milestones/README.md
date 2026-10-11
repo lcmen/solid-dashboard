@@ -15,7 +15,7 @@ This directory tracks the work to build Solid Dashboard from the [design prototy
 
 ## Shared decisions
 
-- Support Rails 8.1 and use Solid Queue and Solid Cache directly through their Active Record models and configured database connections. Do not add either dashboard reference gem as a runtime dependency.
+- Support Rails 8.0 and 8.1 and use Solid Queue and Solid Cache directly through their Active Record models and configured database connections. Do not add either dashboard reference gem as a runtime dependency.
 - Let the host application protect the engine mount with its authentication mechanism. The gem provides no login system, access switch, or permission hooks. Keep CSRF protection, confirmations, and action validation in the engine.
 - Validate SQLite only for the first release. Document other database adapters as unverified.
 - Package browser-ready CSS and JavaScript in conventional engine asset directories. Require a host asset pipeline: Propshaft or Sprockets. Let the pipeline handle fingerprints, manifests, and asset publication. Register standalone assets in `assets.precompile` for Sprockets so the host does not need to add them to its manifest. See the [asset decision](../adr/0001-use-host-asset-pipeline.md).

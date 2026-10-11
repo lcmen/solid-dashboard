@@ -10,11 +10,49 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: jdx/mise-action@v5
-        env:
-          MISE_NO_HOOKS: "1"
-      - run: bundle install
-      - run: mise exec -- hk check --all
-      - run: ASSET_PIPELINE=sprockets bundle exec rake test
-      - run: bundle exec ruby -Ilib -rsolid_dashboard -e 'puts SolidDashboard::VERSION'
-      - run: gem build solid_dashboard.gemspec
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "4.0"
+          bundler-cache: true
+          cache-version: rails-8.1
+      - run: bundle exec rake app:zeitwerk:check
+      - run: bundle exec bundle-audit check --update
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "4.0"
+          bundler-cache: true
+          cache-version: rails-8.1
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "26.11.0"
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: bundle exec standardrb
+      - run: npm ci
+      - run: npm run lint:views
+      - run: npm run check:views
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        asset_pipeline: [propshaft, sprockets]
+        rails_version: ["8.1", "8.0"]
+    env:
+      ASSET_PIPELINE: ${{ matrix.asset_pipeline }}
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/rails_${{ matrix.rails_version }}.gemfile
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "4.0"
+          bundler-cache: true
+          cache-version: rails-${{ matrix.rails_version }}
+      - name: Run tests with Rails ${{ matrix.rails_version }} and ${{ matrix.asset_pipeline }}
+        run: bundle exec rake test

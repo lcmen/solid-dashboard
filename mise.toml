@@ -5,7 +5,7 @@ ruby = "latest"
 "gem:foreman" = "latest"
 
 [hooks]
-postinstall = ["bundle install", "hk install --mise"]
+postinstall = ["bundle install", "npm install", "hk install --mise"]
 
 [tasks.development]
 description = "Start the dummy Rails application"
