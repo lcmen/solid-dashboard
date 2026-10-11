@@ -1,28 +1,13 @@
 <% content_for :title, "Jobs" %>
 
-<p class="text-secondary-500 mt-2 mb-6">Jobs from Solid Queue.</p>
+<% content_for :description, "Jobs from Solid Queue." %>
 
-<dl class="card-group mb-6 flex-wrap" aria-label="Summary">
-  <div class="card-group-item basis-32">
-    <dt class="text-secondary-500 text-xs">Pending</dt>
-    <dd class="h3 mt-1">0</dd>
-  </div>
-
-  <div class="card-group-item basis-32">
-    <dt class="text-secondary-500 text-xs">Running</dt>
-    <dd class="h3 mt-1">0</dd>
-  </div>
-
-  <div class="card-group-item basis-32">
-    <dt class="text-secondary-500 text-xs">Scheduled</dt>
-    <dd class="h3 mt-1">0</dd>
-  </div>
-
-  <div class="card-group-item basis-32">
-    <dt class="text-secondary-500 text-xs">Failed</dt>
-    <dd class="h3 mt-1">0</dd>
-  </div>
-</dl>
+<%= render "solid_dashboard/shared/card_group", values: {
+  "Pending" => 0,
+  "Running" => 0,
+  "Scheduled" => 0,
+  "Failed" => 0
+} %>
 
 <section
   class="card border-secondary-200 border shadow-none"

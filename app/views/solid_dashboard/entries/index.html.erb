@@ -1,20 +1,11 @@
 <% content_for :title, "Cache entries" %>
 
-<p class="text-secondary-500 mt-2 mb-6">
-  Current entries stored in Solid Cache.
-</p>
+<% content_for :description, "Current entries stored in Solid Cache." %>
 
-<dl class="card-group mb-6 flex-wrap" aria-label="Summary">
-  <div class="card-group-item basis-32">
-    <dt class="text-secondary-500 text-xs">Stored entries</dt>
-    <dd class="h3 mt-1">0</dd>
-  </div>
-
-  <div class="card-group-item basis-32">
-    <dt class="text-secondary-500 text-xs">Stored size</dt>
-    <dd class="h3 mt-1">0 MB</dd>
-  </div>
-</dl>
+<%= render "solid_dashboard/shared/card_group", values: {
+  "Stored entries" => 0,
+  "Stored size" => "0 MB"
+} %>
 
 <section
   class="card border-secondary-200 border shadow-none"

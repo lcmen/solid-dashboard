@@ -1,30 +1,13 @@
 <% content_for :title, "Overview" %>
 
-<p class="text-secondary-500 mt-2 mb-6">
-  Solid Queue and Solid Cache at a glance.
-</p>
+<% content_for :description, "Solid Queue and Solid Cache at a glance." %>
 
-<dl class="card-group mb-6 flex-wrap" aria-label="Summary">
-  <div class="card-group-item basis-32">
-    <dt class="text-secondary-500 text-xs">Pending jobs</dt>
-    <dd class="h3 mt-1">0</dd>
-  </div>
-
-  <div class="card-group-item basis-32">
-    <dt class="text-secondary-500 text-xs">Running jobs</dt>
-    <dd class="h3 mt-1">0</dd>
-  </div>
-
-  <div class="card-group-item basis-32">
-    <dt class="text-secondary-500 text-xs">Failed jobs</dt>
-    <dd class="h3 mt-1">0</dd>
-  </div>
-
-  <div class="card-group-item basis-32">
-    <dt class="text-secondary-500 text-xs">Cache hit rate</dt>
-    <dd class="h3 mt-1">0%</dd>
-  </div>
-</dl>
+<%= render "solid_dashboard/shared/card_group", values: {
+  "Pending jobs" => 0,
+  "Running jobs" => 0,
+  "Failed jobs" => 0,
+  "Cache hit rate" => "0%"
+} %>
 
 <div class="grid gap-4 lg:grid-cols-2">
   <section
