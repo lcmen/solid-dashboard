@@ -12,7 +12,16 @@ module SolidDashboard
       section = request.path_parameters.fetch(:section)
       @page_title = NAVIGATION.values.flat_map(&:to_a).to_h.fetch(section)
       @sidebar_navigation = NAVIGATION.map do |title, links|
-        {title: title, links: links.map { |key, label| {label: label, path: public_send((key == "overview") ? :root_path : "#{key}_path"), active: key == section} }}
+        {
+          title: title,
+          links: links.map do |key, label|
+            {
+              active: key == section,
+              label: label,
+              path: public_send((key == "overview") ? :root_path : "#{key}_path")
+            }
+          end
+        }
       end
     end
   end

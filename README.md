@@ -1,6 +1,6 @@
 # Solid Dashboard
 
-A mountable Rails dashboard for Solid Queue and Solid Cache. The dashboard is in early development and currently provides its layout and navigation. Rails 8 is required.
+A mountable Rails engine for Solid Queue and Solid Cache. The current release provides a responsive layout and navigation for the planned dashboard pages. The page content is still in development. Solid Dashboard supports Rails 8.0 and 8.1.
 
 ## Installation
 
@@ -20,14 +20,21 @@ Mount the engine in `config/routes.rb`:
 mount SolidDashboard::Engine, at: "/solid_dashboard"
 ```
 
-The current pages show headings only. Configure authentication and authorization before exposing the dashboard. The gem includes compiled CSS; the host needs no Tailwind or Node.js build step. Use the host's normal `assets:precompile` command during deployment.
+The engine provides Overview, Jobs, Processes, Recurring tasks, Cache analytics, Cache entries, and Cache events navigation. These pages currently show their headings only; they do not read or change Solid Queue or Solid Cache data. Protect the mounted engine with the host application's authentication and authorization. The gem includes compiled CSS and JavaScript, so the host does not need Tailwind or Node.js to run it. Use the host's normal `assets:precompile` command during deployment.
+
+## UI
+
+See [the Bootboat design prototype](docs/design-bootboat.html) for the planned interface. Use Bootboat classes for supported components, Tailwind utilities for spacing, layout, and accessibility, and dashboard classes for the sidebar and navigation links. Bootboat v0.0.1 is stored in `vendor/bootboat` with its license and source commit. Alpine's CSP build controls the mobile menu and needs no `unsafe-eval` policy.
 
 ## Build
 
 ```sh
-SECRET_KEY_BASE_DUMMY=1 RAILS_ENV=production bundle exec rake solid_dashboard:assets:build
+npm ci
+npm run build
 gem build solid_dashboard.gemspec
 ```
+
+The build command compiles Tailwind v4 with the forms plugin and Bootboat, then bundles Alpine with esbuild. Node.js and npm are required only for gem development and release builds.
 
 ## Development
 
@@ -39,7 +46,7 @@ mise install
 
 The setup installs Ruby and npm dependencies, then installs the commit hook.
 
-Start Rails and the CSS watcher:
+Start Rails and the CSS and JavaScript watchers:
 
 ```sh
 mise run development
@@ -47,9 +54,10 @@ mise run development
 
 Open `http://localhost:3000/solid-dashboard`. To change the bind address or port, set `BINDING` and `PORT`.
 
-Run tests with both asset pipelines:
+Build the assets, then run tests with both asset pipelines:
 
 ```sh
+npm run build
 bundle exec rake test
 ASSET_PIPELINE=sprockets bundle exec rake test
 ```

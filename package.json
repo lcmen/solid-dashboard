@@ -1,11 +1,23 @@
 {
-  "devDependencies": {
-    "@herb-tools/formatter": "^0.11.0",
-    "@herb-tools/linter": "^0.11.0"
-  },
   "scripts": {
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "tailwindcss --input app/assets/stylesheets/solid_dashboard/solid_dashboard.css --output app/assets/stylesheets/solid_dashboard/application.css --minify",
+    "build:js": "esbuild app/assets/javascript/solid_dashboard/solid_dashboard.js --bundle --minify --format=iife --target=es2020 --legal-comments=inline --outfile=app/assets/javascript/solid_dashboard/application.js",
     "check:views": "herb-format --check app/views/",
     "lint:views": "herb-lint app/views/",
-    "format:views": "herb-format app/views/"
+    "format:views": "herb-format app/views/",
+    "watch": "concurrently --kill-others \"npm run watch:css\" \"npm run watch:js\"",
+    "watch:css": "npm run build:css -- --watch=always",
+    "watch:js": "npm run build:js -- --watch"
+  },
+  "devDependencies": {
+    "@alpinejs/csp": "^3.17.4",
+    "@herb-tools/formatter": "^0.11.0",
+    "@herb-tools/linter": "^0.11.0",
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/forms": "^0.5.11",
+    "concurrently": "^10.0.6",
+    "esbuild": "^0.28.2",
+    "tailwindcss": "^4.3.3"
   }
 }

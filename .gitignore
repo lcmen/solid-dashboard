@@ -60,5 +60,6 @@ build-iPhoneSimulator/
 
 /test/dummy/log/
 /test/dummy/tmp/
+/test/dummy/public/assets
 !/test/dummy/Procfile.dev
 /test/dummy/storage/*.sqlite3*
