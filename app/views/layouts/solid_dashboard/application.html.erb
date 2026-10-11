@@ -17,27 +17,24 @@
     <%= yield :head %>
   </head>
 
-  <body class="bg-gray-50 font-sans text-sm text-gray-900 antialiased">
-    <a
-      href="#main-content"
-      class="
-        sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4
-        focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2
-        focus:outline-2 focus:outline-blue-500
-      "
+  <body class="bg-secondary-50 text-secondary-900 font-sans text-sm antialiased">
+    <div
+      class="min-h-screen"
+      x-data="SolidDashboardMenu"
+      x-on:keydown.escape.window="open = false"
     >
-      Skip to content
-    </a>
-
-    <div class="min-h-screen md:flex">
       <%= render "layouts/solid_dashboard/sidebar", navigation: @sidebar_navigation || [] %>
 
-      <main
-        id="main-content"
-        tabindex="-1"
-        class="min-w-0 flex-1 px-4 py-8 sm:px-8 lg:px-10 lg:py-11"
-      >
-        <div class="mx-auto max-w-7xl">
+      <main id="main-content" tabindex="-1" class="min-w-0 md:ml-56">
+        <div class="mx-auto max-w-7xl p-4 sm:px-8 sm:py-6">
+          <div class="flex items-center justify-between gap-4">
+            <h1 class="h2 min-w-0 tracking-tight">
+              <%= @page_title %>
+            </h1>
+
+            <%= render "layouts/solid_dashboard/mobile_menu" %>
+          </div>
+
           <%= yield %>
         </div>
       </main>

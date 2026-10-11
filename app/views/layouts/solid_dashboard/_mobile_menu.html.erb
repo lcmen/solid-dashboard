@@ -1,0 +1,22 @@
+<button
+  type="button"
+  x-ref="menuButton"
+  class="btn btn-secondary btn-icon hidden shrink-0 max-md:inline-flex"
+  x-on:click.stop="toggle"
+  x-bind:aria-expanded="open"
+  aria-expanded="false"
+  aria-controls="dashboard-sidebar"
+  aria-label="Toggle navigation"
+>
+  <svg
+    aria-hidden="true"
+    class="size-5"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+  >
+    <path d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+</button>

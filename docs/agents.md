@@ -10,7 +10,7 @@ Solid Dashboard is a mountable Rails engine that presents Solid Queue and Solid 
 
 Do not depend on either dashboard gem at runtime unless a deliberate architectural decision changes this rule. Integrate with Solid Queue and Solid Cache directly, keeping compatibility with supported versions explicit and tested.
 
-The current visual reference is `design.html`. Treat it as a prototype, not production implementation or a source of real data.
+The current visual reference is `docs/design-bootboat.html`. Treat it as a prototype, not production implementation or a source of real data.
 
 ## Principles
 
@@ -50,7 +50,7 @@ Cache analytics require instrumentation because Solid Cache does not store histo
 
 ## UI and interaction
 
-- Follow https://sailboatui.com/ for Tailwind component structure, typography, spacing, borders, tables, forms, and buttons.
+- Use Bootboat classes for supported components, including headings, branding, and buttons. Use Tailwind utilities for spacing, layout, and accessibility. Use dashboard classes for components that Bootboat does not cover, including the sidebar and navigation links.
 - Use a restrained, neutral administration aesthetic. Prefer white surfaces, subtle borders, and blue primary accents.
 - Do not render a global top bar or breadcrumbs.
 - Sidebar branding is only the Solid Dashboard icon and name. Do not add a subtitle, environment panel, Rails version, or demo-data note to the sidebar.
@@ -63,7 +63,7 @@ Cache analytics require instrumentation because Solid Cache does not store histo
 
 - Ship production-built CSS and JavaScript inside the gem.
 - Require Propshaft or Sprockets in the host application. The host must not need Importmap, Vite, Node.js, or Tailwind compilation for the dashboard.
-- The gem may use Tailwind and Alpine.js or Stimulus at development/build time; package the resulting browser-ready assets.
+- Build Tailwind v4, Bootboat, and the Alpine.js CSP bundle with npm development dependencies. Package browser-ready CSS and JavaScript. Install npm dependencies before compilation.
 - Use conventional engine asset paths and standard Rails asset helpers. Register standalone assets for Sprockets precompilation. Let the host pipeline handle fingerprints, manifests, and publication; support an engine mounted at a subpath.
 - Avoid loading runtime assets from CDNs.
 - Do not duplicate a global Tailwind build or stylesheet in the host application.

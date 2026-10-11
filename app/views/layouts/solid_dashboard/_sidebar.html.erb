@@ -1,46 +1,33 @@
 <aside
-  class="
-    border-b border-gray-200 bg-white md:sticky md:top-0 md:h-screen
-    md:w-[246px] md:shrink-0 md:overflow-y-auto md:border-r md:border-b-0
-  "
+  id="dashboard-sidebar"
+  class="sidebar"
+  x-on:click.outside="open = false"
+  x-bind:class="{ 'is-open': open }"
 >
-  <div class="flex min-h-20 items-center gap-3 border-b border-gray-100 px-5 py-5">
-    <span
-      aria-hidden="true"
-      class="
-        flex size-9 shrink-0 items-center justify-center rounded-lg
-        bg-blue-600 text-lg font-extrabold text-white
-      "
-    >
-      S
-    </span>
-
-    <span class="text-base font-semibold tracking-tight">Solid Dashboard</span>
+  <div class="navbar-brand mx-2 mb-6">
+    <span aria-hidden="true" class="navbar-brand-icon">S</span>
+    <span class="h6">Solid Dashboard</span>
   </div>
 
-  <nav
-    aria-label="Dashboard"
-    class="grid gap-6 px-3 py-6 sm:grid-cols-3 md:grid-cols-1"
-  >
-    <% navigation.each do |group| %>
-      <div>
-        <h2
-          class="
-            mb-2 px-3 text-[10px] font-semibold tracking-widest
-            text-gray-400 uppercase
-          "
-        >
-          <%= group[:title] %>
-        </h2>
+  <nav aria-label="Dashboard">
+    <ul class="space-y-4">
+      <% navigation.each do |group| %>
+        <li>
+          <h2 class="h6 nav-caption text-xs">
+            <%= group[:title] %>
+          </h2>
 
-        <ul class="space-y-1">
-          <% group[:links].each do |link| %>
-            <li>
-              <%= link_to link[:label], link[:path], aria: { current: link[:active] ? "page" : nil }, class: class_names("block rounded-lg px-3 py-2.5 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500", "bg-blue-50 text-blue-700": link[:active], "text-gray-500 hover:bg-gray-100 hover:text-gray-700": !link[:active]) %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+          <ul class="space-y-1">
+            <% group[:links].each do |link| %>
+              <li>
+                <%= link_to link[:label], link[:path],
+                aria: { current: link[:active] ? "page" : nil },
+                class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
   </nav>
 </aside>
