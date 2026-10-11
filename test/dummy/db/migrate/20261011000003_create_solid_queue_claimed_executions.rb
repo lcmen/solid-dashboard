@@ -1,4 +1,4 @@
-class CreateSolidQueueClaimedExecutions < ActiveRecord::Migration[8.1]
+class CreateSolidQueueClaimedExecutions < ActiveRecord::Migration[8.0]
   def change
     create_table :solid_queue_claimed_executions do |t|
       t.bigint :job_id, null: false

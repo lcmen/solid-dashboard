@@ -1,4 +1,4 @@
-class CreateSolidQueuePauses < ActiveRecord::Migration[8.1]
+class CreateSolidQueuePauses < ActiveRecord::Migration[8.0]
   def change
     create_table :solid_queue_pauses do |t|
       t.string :queue_name, null: false

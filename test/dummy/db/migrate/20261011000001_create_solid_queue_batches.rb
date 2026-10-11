@@ -1,4 +1,4 @@
-class CreateSolidQueueBatches < ActiveRecord::Migration[8.1]
+class CreateSolidQueueBatches < ActiveRecord::Migration[8.0]
   def change
     create_table :solid_queue_batches do |t|
       t.string :active_job_batch_id

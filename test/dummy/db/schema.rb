@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_11_000012) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_11_000012) do
   create_table "solid_queue_batch_executions", force: :cascade do |t|
     t.bigint "job_id", null: false
     t.bigint "batch_id", null: false

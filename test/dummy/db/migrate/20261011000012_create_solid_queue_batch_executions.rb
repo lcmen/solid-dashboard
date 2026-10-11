@@ -1,4 +1,4 @@
-class CreateSolidQueueBatchExecutions < ActiveRecord::Migration[8.1]
+class CreateSolidQueueBatchExecutions < ActiveRecord::Migration[8.0]
   def change
     create_table :solid_queue_batch_executions do |t|
       t.bigint :job_id, null: false

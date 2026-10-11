@@ -1,4 +1,4 @@
-class CreateSolidQueueSemaphores < ActiveRecord::Migration[8.1]
+class CreateSolidQueueSemaphores < ActiveRecord::Migration[8.0]
   def change
     create_table :solid_queue_semaphores do |t|
       t.string :key, null: false

@@ -1,4 +1,4 @@
-class CreateSolidQueueRecurringTasks < ActiveRecord::Migration[8.1]
+class CreateSolidQueueRecurringTasks < ActiveRecord::Migration[8.0]
   def change
     create_table :solid_queue_recurring_tasks do |t|
       t.string :key, null: false
