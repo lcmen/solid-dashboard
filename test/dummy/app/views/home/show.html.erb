@@ -1,0 +1,26 @@
+<main>
+  <div>
+    <h1>Solid Dashboard demo</h1>
+    <p>Enqueue jobs to see them in the dashboard.</p>
+  </div>
+
+  <% if notice %>
+    <p role="status"><%= notice %></p>
+  <% end %>
+
+  <section aria-label="Demo jobs">
+    <article>
+      <h2>Slow job</h2>
+      <p>Runs for 10 seconds on the slow queue.</p>
+      <%= button_to "Enqueue slow job", slow_job_path %>
+    </article>
+
+    <article>
+      <h2>Fast job</h2>
+      <p>Completes immediately on the fast queue.</p>
+      <%= button_to "Enqueue fast job", fast_job_path %>
+    </article>
+  </section>
+
+  <%= link_to "Open dashboard", ENV.fetch("DASHBOARD_MOUNT", "/solid-dashboard") %>
+</main>

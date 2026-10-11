@@ -1,0 +1,18 @@
+default: &default
+  fast_job:
+    class: FastJob
+    queue: fast
+    schedule: every minute
+  slow_job:
+    class: SlowJob
+    queue: slow
+    schedule: every 5 minutes
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
