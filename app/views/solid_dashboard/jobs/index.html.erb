@@ -1,0 +1,44 @@
+<% content_for :title, "Jobs" %>
+
+<% content_for :description, "Jobs from Solid Queue." %>
+
+<%= render "solid_dashboard/shared/card_group", values: {
+  "Pending" => 0,
+  "Running" => 0,
+  "Scheduled" => 0,
+  "Failed" => 0
+} %>
+
+<section
+  class="card border-secondary-200 border shadow-none"
+  aria-labelledby="jobs-heading"
+>
+  <div class="flex-between border-secondary-100 gap-4 border-b px-5 py-4">
+    <h2 id="jobs-heading" class="h6">Job executions</h2>
+    <span class="badge badge-gray">0 jobs</span>
+  </div>
+
+  <div class="table-wrapper">
+    <table
+      class="table border-0 whitespace-nowrap"
+      aria-labelledby="jobs-heading"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Job</th>
+          <th scope="col">Queue</th>
+          <th scope="col">Status</th>
+          <th scope="col">Scheduled at</th>
+          <th scope="col">Finished at</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td colspan="6" class="text-secondary-500 text-center">No jobs</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+<% content_for :title, "Cache entries" %>
+
+<% content_for :description, "Current entries stored in Solid Cache." %>
+
+<%= render "solid_dashboard/shared/card_group", values: {
+  "Stored entries" => 0,
+  "Stored size" => "0 MB"
+} %>
+
+<section
+  class="card border-secondary-200 border shadow-none"
+  aria-labelledby="entries-heading"
+>
+  <div class="flex-between border-secondary-100 gap-4 border-b px-5 py-4">
+    <h2 id="entries-heading" class="h6">Stored cache keys</h2>
+  </div>
+
+  <div class="table-wrapper">
+    <table
+      class="table border-0 whitespace-nowrap"
+      aria-labelledby="entries-heading"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Cache key</th>
+          <th scope="col">Size</th>
+          <th scope="col">Created</th>
+          <th scope="col">Expires</th>
+          <th scope="col">Status</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td colspan="6" class="text-secondary-500 text-center">
+            No cache entries
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

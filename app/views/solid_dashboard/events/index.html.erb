@@ -1,0 +1,41 @@
+<% content_for :title, "Cache events" %>
+
+<% content_for :description, "Read, write, and delete events recorded by instrumentation." %>
+
+<section
+  class="card border-secondary-200 border shadow-none"
+  aria-labelledby="events-heading"
+>
+  <div class="flex-between border-secondary-100 gap-4 border-b px-5 py-4">
+    <h2 id="events-heading" class="h6">Event history</h2>
+  </div>
+
+  <div class="table-wrapper">
+    <table
+      class="table border-0 whitespace-nowrap"
+      aria-labelledby="events-heading"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Operation</th>
+          <th scope="col">Cache key</th>
+          <th scope="col">Size</th>
+          <th scope="col">Duration</th>
+          <th scope="col">Time</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td colspan="5" class="text-secondary-500 text-center">
+            No cache events
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<p class="text-secondary-500 mt-4 text-xs">
+  Cache events require cache event instrumentation.
+</p>

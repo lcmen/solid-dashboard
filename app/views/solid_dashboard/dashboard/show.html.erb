@@ -1,1 +1,174 @@
+<% content_for :title, "Overview" %>
 
+<% content_for :description, "Solid Queue and Solid Cache at a glance." %>
+
+<%= render "solid_dashboard/shared/card_group", values: {
+  "Pending jobs" => 0,
+  "Running jobs" => 0,
+  "Failed jobs" => 0,
+  "Cache hit rate" => "0%"
+} %>
+
+<div class="grid gap-4 lg:grid-cols-2">
+  <section
+    class="card border-secondary-200 border shadow-none"
+    aria-labelledby="job-activity-heading"
+  >
+    <div class="flex-between border-secondary-100 gap-4 border-b px-5 py-4">
+      <h2 id="job-activity-heading" class="h6">Job activity</h2>
+      <%= link_to "View jobs", jobs_path, class: "btn btn-secondary btn-sm" %>
+    </div>
+
+    <div class="card-body">
+      <dl class="flex flex-wrap gap-4 text-xs">
+        <div class="flex gap-2">
+          <dt class="text-secondary-500">Enqueued</dt>
+          <dd class="font-semibold">0</dd>
+        </div>
+
+        <div class="flex gap-2">
+          <dt class="text-secondary-500">Finished</dt>
+          <dd class="font-semibold">0</dd>
+        </div>
+
+        <div class="flex gap-2">
+          <dt class="text-secondary-500">Retried</dt>
+          <dd class="font-semibold">0</dd>
+        </div>
+
+        <div class="flex gap-2">
+          <dt class="text-secondary-500">Failed</dt>
+          <dd class="font-semibold">0</dd>
+        </div>
+      </dl>
+
+      <svg
+        class="text-secondary-200 mt-4 h-52 w-full"
+        viewBox="0 0 550 210"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M0 10H550 M0 55H550 M0 100H550 M0 145H550 M0 190H550"
+          fill="none"
+          stroke="currentColor"
+          stroke-dasharray="3 4"
+        />
+      </svg>
+    </div>
+  </section>
+
+  <section
+    class="card border-secondary-200 border shadow-none"
+    aria-labelledby="cache-activity-heading"
+  >
+    <div class="flex-between border-secondary-100 gap-4 border-b px-5 py-4">
+      <h2 id="cache-activity-heading" class="h6">Cache activity</h2>
+      <%= link_to "View cache", cache_path, class: "btn btn-secondary btn-sm" %>
+    </div>
+
+    <div class="card-body">
+      <dl class="flex flex-wrap gap-4 text-xs">
+        <div class="flex gap-2">
+          <dt class="text-secondary-500">Hits</dt>
+          <dd class="font-semibold">0</dd>
+        </div>
+
+        <div class="flex gap-2">
+          <dt class="text-secondary-500">Misses</dt>
+          <dd class="font-semibold">0</dd>
+        </div>
+
+        <div class="flex gap-2">
+          <dt class="text-secondary-500">Writes</dt>
+          <dd class="font-semibold">0</dd>
+        </div>
+
+        <div class="flex gap-2">
+          <dt class="text-secondary-500">Deletes</dt>
+          <dd class="font-semibold">0</dd>
+        </div>
+      </dl>
+
+      <svg
+        class="text-secondary-200 mt-4 h-52 w-full"
+        viewBox="0 0 550 210"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M0 10H550 M0 55H550 M0 100H550 M0 145H550 M0 190H550"
+          fill="none"
+          stroke="currentColor"
+          stroke-dasharray="3 4"
+        />
+      </svg>
+    </div>
+  </section>
+
+  <section
+    class="card border-secondary-200 border shadow-none"
+    aria-labelledby="queue-summary-heading"
+  >
+    <div class="flex-between border-secondary-100 gap-4 border-b px-5 py-4">
+      <h2 id="queue-summary-heading" class="h6">Queue summary</h2>
+    </div>
+
+    <dl class="divide-secondary-100 divide-y px-5">
+      <div class="flex-between gap-4 py-3">
+        <dt class="text-secondary-500">Pending</dt>
+        <dd class="font-semibold">0</dd>
+      </div>
+
+      <div class="flex-between gap-4 py-3">
+        <dt class="text-secondary-500">Running</dt>
+        <dd class="font-semibold">0</dd>
+      </div>
+
+      <div class="flex-between gap-4 py-3">
+        <dt class="text-secondary-500">Scheduled</dt>
+        <dd class="font-semibold">0</dd>
+      </div>
+
+      <div class="flex-between gap-4 py-3">
+        <dt class="text-secondary-500">Failed</dt>
+        <dd class="font-semibold">0</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section
+    class="card border-secondary-200 border shadow-none"
+    aria-labelledby="cache-summary-heading"
+  >
+    <div class="flex-between border-secondary-100 gap-4 border-b px-5 py-4">
+      <h2 id="cache-summary-heading" class="h6">Cache summary</h2>
+    </div>
+
+    <dl class="divide-secondary-100 divide-y px-5">
+      <div class="flex-between gap-4 py-3">
+        <dt class="text-secondary-500">Stored entries</dt>
+        <dd class="font-semibold">0</dd>
+      </div>
+
+      <div class="flex-between gap-4 py-3">
+        <dt class="text-secondary-500">Storage size</dt>
+        <dd class="font-semibold">0 MB</dd>
+      </div>
+
+      <div class="flex-between gap-4 py-3">
+        <dt class="text-secondary-500">Hits (all recorded)</dt>
+        <dd class="font-semibold">0</dd>
+      </div>
+
+      <div class="flex-between gap-4 py-3">
+        <dt class="text-secondary-500">Misses (all recorded)</dt>
+        <dd class="font-semibold">0</dd>
+      </div>
+    </dl>
+  </section>
+</div>
+
+<p class="text-secondary-500 mt-4 text-xs">
+  Cache activity requires cache event instrumentation.
+</p>

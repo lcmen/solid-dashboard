@@ -14,7 +14,7 @@
     @apply mx-2 mt-2 mb-2 text-secondary-500 tracking-wide uppercase;
   }
   .nav-link {
-    @apply flex w-full items-center rounded-md px-3 py-2 text-secondary-500 text-sm font-medium;
+    @apply flex w-full items-center gap-3 rounded-md px-3 py-2 text-secondary-500 text-sm font-medium;
     &:hover {
       @apply bg-secondary-50 text-secondary-900;
     }

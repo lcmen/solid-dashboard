@@ -1,0 +1,37 @@
+<% content_for :title, "Recurring tasks" %>
+
+<% content_for :description, "Configured recurring job definitions and schedules." %>
+
+<section
+  class="card border-secondary-200 border shadow-none"
+  aria-labelledby="recurring-tasks-heading"
+>
+  <div class="flex-between border-secondary-100 gap-4 border-b px-5 py-4">
+    <h2 id="recurring-tasks-heading" class="h6">Task schedules</h2>
+    <span class="badge badge-gray">0 tasks</span>
+  </div>
+
+  <div class="table-wrapper">
+    <table
+      class="table border-0 whitespace-nowrap"
+      aria-labelledby="recurring-tasks-heading"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Task</th>
+          <th scope="col">Job class</th>
+          <th scope="col">Schedule</th>
+          <th scope="col">Queue</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td colspan="4" class="text-secondary-500 text-center">
+            No recurring tasks
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

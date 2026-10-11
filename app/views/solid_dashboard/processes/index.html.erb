@@ -1,0 +1,45 @@
+<% content_for :title, "Processes" %>
+
+<% content_for :description, "Worker, dispatcher, scheduler, and supervisor processes." %>
+
+<%= render "solid_dashboard/shared/card_group", values: {
+  "Processes" => 0,
+  "Workers" => 0,
+  "Dispatchers" => 0,
+  "Stale heartbeat" => 0
+} %>
+
+<section
+  class="card border-secondary-200 border shadow-none"
+  aria-labelledby="processes-heading"
+>
+  <div class="flex-between border-secondary-100 gap-4 border-b px-5 py-4">
+    <h2 id="processes-heading" class="h6">Registered processes</h2>
+  </div>
+
+  <div class="table-wrapper">
+    <table
+      class="table border-0 whitespace-nowrap"
+      aria-labelledby="processes-heading"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Process</th>
+          <th scope="col">Kind</th>
+          <th scope="col">Hostname</th>
+          <th scope="col">PID</th>
+          <th scope="col">Last heartbeat</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td colspan="6" class="text-secondary-500 text-center">
+            No processes
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
