@@ -20,7 +20,7 @@ Mount the engine in `config/routes.rb`:
 mount SolidDashboard::Engine, at: "/solid_dashboard"
 ```
 
-The engine provides Overview, Jobs, Processes, Recurring tasks, Cache analytics, Cache entries, and Cache events navigation. These pages currently show their headings only; they do not read or change Solid Queue or Solid Cache data. Protect the mounted engine with the host application's authentication and authorization. The gem includes compiled CSS and JavaScript, so the host does not need Tailwind or Node.js to run it. Use the host's normal `assets:precompile` command during deployment.
+The engine provides Overview, Jobs, Processes, Recurring tasks, Cache analytics, Cache entries, and Cache events navigation. Each page has its own controller and view with metric strips, cards, or tables based on the design prototype. Numeric values are temporary zeros, and tables have no records. The pages do not read or change Solid Queue or Solid Cache data. Protect the mounted engine with the host application's authentication and authorization. The gem includes compiled CSS and JavaScript, so the host does not need Tailwind or Node.js to run it. Use the host's normal `assets:precompile` command during deployment.
 
 ## Build
 

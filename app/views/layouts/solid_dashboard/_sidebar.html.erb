@@ -11,23 +11,137 @@
 
   <nav aria-label="Dashboard">
     <ul class="space-y-4">
-      <% navigation.each do |group| %>
-        <li>
-          <h2 class="h6 nav-caption text-xs">
-            <%= group[:title] %>
-          </h2>
+      <li>
+        <h2 class="h6 nav-caption text-xs">Workspace</h2>
 
-          <ul class="space-y-1">
-            <% group[:links].each do |link| %>
-              <li>
-                <%= link_to link[:label], link[:path],
-                aria: { current: link[:active] ? "page" : nil },
-                class: "nav-link" %>
-              </li>
+        <ul class="space-y-1">
+          <li>
+            <%= page_link "Overview", root_path do %>
+              <svg
+                aria-hidden="true"
+                class="size-4 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <rect x="3" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="3" width="7" height="7" rx="1" />
+                <rect x="3" y="14" width="7" height="7" rx="1" />
+                <rect x="14" y="14" width="7" height="7" rx="1" />
+              </svg>
             <% end %>
-          </ul>
-        </li>
-      <% end %>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <h2 class="h6 nav-caption text-xs">Solid Queue</h2>
+
+        <ul class="space-y-1">
+          <li>
+            <%= page_link "Jobs", jobs_path do %>
+              <svg
+                aria-hidden="true"
+                class="size-4 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16" />
+                <path d="m3 6 2 2 3-3" />
+              </svg>
+            <% end %>
+          </li>
+
+          <li>
+            <%= page_link "Processes", processes_path do %>
+              <svg
+                aria-hidden="true"
+                class="size-4 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <rect x="3" y="4" width="18" height="16" rx="2" />
+                <path d="M7 9h4m-4 5h7" />
+              </svg>
+            <% end %>
+          </li>
+
+          <li>
+            <%= page_link "Recurring tasks", recurring_tasks_path do %>
+              <svg
+                aria-hidden="true"
+                class="size-4 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path
+                  d="m17 2 4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4m14-1v2a3 3 0 0 1-3 3H3"
+                />
+              </svg>
+            <% end %>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <h2 class="h6 nav-caption text-xs">Solid Cache</h2>
+
+        <ul class="space-y-1">
+          <li>
+            <%= page_link "Cache analytics", cache_path do %>
+              <svg
+                aria-hidden="true"
+                class="size-4 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <rect x="4" y="4" width="16" height="16" rx="3" />
+                <path d="M8 9h8M8 13h8M8 17h5" />
+              </svg>
+            <% end %>
+          </li>
+
+          <li>
+            <%= page_link "Cache entries", entries_path do %>
+              <svg
+                aria-hidden="true"
+                class="size-4 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                <path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0" />
+              </svg>
+            <% end %>
+          </li>
+
+          <li>
+            <%= page_link "Cache events", events_path do %>
+              <svg
+                aria-hidden="true"
+                class="size-4 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M3 12h4l3-8 4 16 3-8h4" />
+              </svg>
+            <% end %>
+          </li>
+        </ul>
+      </li>
     </ul>
   </nav>
 </aside>

@@ -1,0 +1,150 @@
+<% content_for :title, "Cache analytics" %>
+
+<p class="text-secondary-500 mt-2 mb-6">
+  Cache event activity and current stored entries.
+</p>
+
+<dl class="card-group mb-6 flex-wrap" aria-label="Summary">
+  <div class="card-group-item basis-32">
+    <dt class="text-secondary-500 text-xs">Cache hit rate</dt>
+    <dd class="h3 mt-1">0%</dd>
+  </div>
+
+  <div class="card-group-item basis-32">
+    <dt class="text-secondary-500 text-xs">Cache hits</dt>
+    <dd class="h3 mt-1">0</dd>
+  </div>
+
+  <div class="card-group-item basis-32">
+    <dt class="text-secondary-500 text-xs">Cache misses</dt>
+    <dd class="h3 mt-1">0</dd>
+  </div>
+
+  <div class="card-group-item basis-32">
+    <dt class="text-secondary-500 text-xs">Stored size</dt>
+    <dd class="h3 mt-1">0 MB</dd>
+  </div>
+</dl>
+
+<div class="mb-4 grid gap-4 lg:grid-cols-2">
+  <section
+    class="card border-secondary-200 border shadow-none"
+    aria-labelledby="cache-operations-heading"
+  >
+    <div class="flex-between border-secondary-100 gap-4 border-b px-5 py-4">
+      <h2 id="cache-operations-heading" class="h6">Cache operations</h2>
+    </div>
+
+    <div class="card-body">
+      <dl class="flex flex-wrap gap-4 text-xs">
+        <div class="flex gap-2">
+          <dt class="text-secondary-500">Hits</dt>
+          <dd class="font-semibold">0</dd>
+        </div>
+
+        <div class="flex gap-2">
+          <dt class="text-secondary-500">Misses</dt>
+          <dd class="font-semibold">0</dd>
+        </div>
+
+        <div class="flex gap-2">
+          <dt class="text-secondary-500">Writes</dt>
+          <dd class="font-semibold">0</dd>
+        </div>
+
+        <div class="flex gap-2">
+          <dt class="text-secondary-500">Deletes</dt>
+          <dd class="font-semibold">0</dd>
+        </div>
+      </dl>
+
+      <svg
+        class="text-secondary-200 mt-4 h-52 w-full"
+        viewBox="0 0 550 210"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M0 10H550 M0 55H550 M0 100H550 M0 145H550 M0 190H550"
+          fill="none"
+          stroke="currentColor"
+          stroke-dasharray="3 4"
+        />
+      </svg>
+    </div>
+  </section>
+
+  <section
+    class="card border-secondary-200 border shadow-none"
+    aria-labelledby="event-totals-heading"
+  >
+    <div class="flex-between border-secondary-100 gap-4 border-b px-5 py-4">
+      <h2 id="event-totals-heading" class="h6">Event totals</h2>
+    </div>
+
+    <dl class="divide-secondary-100 divide-y px-5">
+      <div class="flex-between gap-4 py-3">
+        <dt class="text-secondary-500">Hits</dt>
+        <dd class="font-semibold">0</dd>
+      </div>
+
+      <div class="flex-between gap-4 py-3">
+        <dt class="text-secondary-500">Misses</dt>
+        <dd class="font-semibold">0</dd>
+      </div>
+
+      <div class="flex-between gap-4 py-3">
+        <dt class="text-secondary-500">Writes</dt>
+        <dd class="font-semibold">0</dd>
+      </div>
+
+      <div class="flex-between gap-4 py-3">
+        <dt class="text-secondary-500">Deletes</dt>
+        <dd class="font-semibold">0</dd>
+      </div>
+
+      <div class="flex-between gap-4 py-3">
+        <dt class="text-secondary-500">Stored entries</dt>
+        <dd class="font-semibold">0</dd>
+      </div>
+    </dl>
+  </section>
+</div>
+
+<section
+  class="card border-secondary-200 border shadow-none"
+  aria-labelledby="recent-cache-events-heading"
+>
+  <div class="flex-between border-secondary-100 gap-4 border-b px-5 py-4">
+    <h2 id="recent-cache-events-heading" class="h6">Recent cache events</h2>
+    <%= link_to "View all", events_path, class: "btn btn-secondary btn-sm" %>
+  </div>
+
+  <div class="table-wrapper">
+    <table
+      class="table border-0 whitespace-nowrap"
+      aria-labelledby="recent-cache-events-heading"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Operation</th>
+          <th scope="col">Key</th>
+          <th scope="col">Duration</th>
+          <th scope="col">Time</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td colspan="4" class="text-secondary-500 text-center">
+            No cache events
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<p class="text-secondary-500 mt-4 text-xs">
+  Cache analytics require cache event instrumentation.
+</p>

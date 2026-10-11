@@ -1,0 +1,59 @@
+<% content_for :title, "Jobs" %>
+
+<p class="text-secondary-500 mt-2 mb-6">Jobs from Solid Queue.</p>
+
+<dl class="card-group mb-6 flex-wrap" aria-label="Summary">
+  <div class="card-group-item basis-32">
+    <dt class="text-secondary-500 text-xs">Pending</dt>
+    <dd class="h3 mt-1">0</dd>
+  </div>
+
+  <div class="card-group-item basis-32">
+    <dt class="text-secondary-500 text-xs">Running</dt>
+    <dd class="h3 mt-1">0</dd>
+  </div>
+
+  <div class="card-group-item basis-32">
+    <dt class="text-secondary-500 text-xs">Scheduled</dt>
+    <dd class="h3 mt-1">0</dd>
+  </div>
+
+  <div class="card-group-item basis-32">
+    <dt class="text-secondary-500 text-xs">Failed</dt>
+    <dd class="h3 mt-1">0</dd>
+  </div>
+</dl>
+
+<section
+  class="card border-secondary-200 border shadow-none"
+  aria-labelledby="jobs-heading"
+>
+  <div class="flex-between border-secondary-100 gap-4 border-b px-5 py-4">
+    <h2 id="jobs-heading" class="h6">Job executions</h2>
+    <span class="badge badge-gray">0 jobs</span>
+  </div>
+
+  <div class="table-wrapper">
+    <table
+      class="table border-0 whitespace-nowrap"
+      aria-labelledby="jobs-heading"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Job</th>
+          <th scope="col">Queue</th>
+          <th scope="col">Status</th>
+          <th scope="col">Scheduled at</th>
+          <th scope="col">Finished at</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td colspan="6" class="text-secondary-500 text-center">No jobs</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

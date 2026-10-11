@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>
-      <%= @page_title.presence || "Solid Dashboard" %> · Solid Dashboard
+      <%= content_for(:title).presence || "Solid Dashboard" %> · Solid Dashboard
     </title>
 
     <%= csrf_meta_tags %>
@@ -23,16 +23,36 @@
       x-data="SolidDashboardMenu"
       x-on:keydown.escape.window="open = false"
     >
-      <%= render "layouts/solid_dashboard/sidebar", navigation: @sidebar_navigation || [] %>
+      <%= render "layouts/solid_dashboard/sidebar" %>
 
       <main id="main-content" tabindex="-1" class="min-w-0 md:ml-56">
         <div class="mx-auto max-w-7xl p-4 sm:px-8 sm:py-6">
           <div class="flex items-center justify-between gap-4">
             <h1 class="h2 min-w-0 tracking-tight">
-              <%= @page_title %>
+              <%= content_for(:title) %>
             </h1>
 
-            <%= render "layouts/solid_dashboard/mobile_menu" %>
+            <div class="flex shrink-0 items-center gap-2">
+              <%= link_to request.path, class: "btn btn-secondary" do %>
+                <svg
+                  aria-hidden="true"
+                  class="size-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M20 11a8 8 0 0 0-14-5L3 9m0-6v6h6M4 13a8 8 0 0 0 14 5l3-3m0 6v-6h-6"
+                  />
+                </svg>
+                Live
+              <% end %>
+
+              <%= render "layouts/solid_dashboard/mobile_menu" %>
+            </div>
           </div>
 
           <%= yield %>
