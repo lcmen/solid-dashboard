@@ -3,6 +3,8 @@ source "https://rubygems.org"
 gemspec path: ".."
 
 gem "puma"
+gem "solid_cache"
+gem "solid_queue"
 gem "sqlite3"
 gem "standard"
 
