@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@herb-tools/formatter": "^0.11.0",
+    "@herb-tools/linter": "^0.11.0"
+  },
+  "scripts": {
+    "check:views": "herb-format --check app/views/",
+    "lint:views": "herb-lint app/views/",
+    "format:views": "herb-format app/views/"
+  }
+}

@@ -5,4 +5,8 @@ steps {
     check = "bundle exec standardrb"
     fix = "bundle exec standardrb --fix"
   }
+  ["herb"] {
+    check = "npm run lint:views && npm run check:views"
+    fix = "npm run format:views"
+  }
 }

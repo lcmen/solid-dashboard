@@ -1,26 +1,46 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><%= @page_title.presence || "Solid Dashboard" %> · Solid Dashboard</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <%= stylesheet_link_tag "solid_dashboard/application", "data-turbo-track": "reload" %>
-  <%= javascript_include_tag "solid_dashboard/application", "data-turbo-track": "reload", defer: true %>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <%= yield :head %>
+    <title>
+      <%= @page_title.presence || "Solid Dashboard" %> · Solid Dashboard
+    </title>
 
-</head>
-<body class="bg-gray-50 font-sans text-sm text-gray-900 antialiased">
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:outline-2 focus:outline-blue-500">Skip to content</a>
-  <div class="min-h-screen md:flex">
-    <%= render "layouts/solid_dashboard/sidebar", navigation: @sidebar_navigation || [] %>
-    <main id="main-content" tabindex="-1" class="min-w-0 flex-1 px-4 py-8 sm:px-8 lg:px-10 lg:py-11">
-      <div class="mx-auto max-w-7xl">
-        <%= yield %>
-      </div>
-    </main>
-  </div>
-</body>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "solid_dashboard/application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "solid_dashboard/application", "data-turbo-track": "reload", defer: true %>
+
+    <%= yield :head %>
+  </head>
+
+  <body class="bg-gray-50 font-sans text-sm text-gray-900 antialiased">
+    <a
+      href="#main-content"
+      class="
+        sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4
+        focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2
+        focus:outline-2 focus:outline-blue-500
+      "
+    >
+      Skip to content
+    </a>
+
+    <div class="min-h-screen md:flex">
+      <%= render "layouts/solid_dashboard/sidebar", navigation: @sidebar_navigation || [] %>
+
+      <main
+        id="main-content"
+        tabindex="-1"
+        class="min-w-0 flex-1 px-4 py-8 sm:px-8 lg:px-10 lg:py-11"
+      >
+        <div class="mx-auto max-w-7xl">
+          <%= yield %>
+        </div>
+      </main>
+    </div>
+  </body>
 </html>
