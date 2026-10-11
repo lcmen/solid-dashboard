@@ -22,10 +22,6 @@ mount SolidDashboard::Engine, at: "/solid_dashboard"
 
 The engine provides Overview, Jobs, Processes, Recurring tasks, Cache analytics, Cache entries, and Cache events navigation. These pages currently show their headings only; they do not read or change Solid Queue or Solid Cache data. Protect the mounted engine with the host application's authentication and authorization. The gem includes compiled CSS and JavaScript, so the host does not need Tailwind or Node.js to run it. Use the host's normal `assets:precompile` command during deployment.
 
-## UI
-
-See [the Bootboat design prototype](docs/design-bootboat.html) for the planned interface. Use Bootboat classes for supported components, Tailwind utilities for spacing, layout, and accessibility, and dashboard classes for the sidebar and navigation links. Bootboat v0.0.1 is stored in `vendor/bootboat` with its license and source commit. Alpine's CSP build controls the mobile menu and needs no `unsafe-eval` policy.
-
 ## Build
 
 ```sh

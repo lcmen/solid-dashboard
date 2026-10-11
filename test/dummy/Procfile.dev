@@ -1,2 +1,3 @@
 web: bin/rails server -b "${BINDING:-127.0.0.1}"
+jobs: bin/jobs
 assets: npm --prefix ../.. run watch
