@@ -1,20 +1,21 @@
 [tools]
 hk = "latest"
+node = "26.11.0"
 ruby = "latest"
 "gem:foreman" = "latest"
 
 [hooks]
-postinstall = ["bundle install", "hk install --mise"]
+postinstall = ["bundle install", "npm install", "hk install --mise"]
 
 [tasks.development]
 description = "Start the dummy Rails application"
 run = 'test/dummy/bin/dev "$@"'
 
 [tasks.fix]
-run = "bundle exec standardrb --fix"
+run = "bundle exec standardrb --fix && npm run format:views"
 
 [tasks.lint]
-run = "bundle exec standardrb"
+run = "bundle exec standardrb && npm run lint:views && npm run check:views"
 
 [tasks.pre-commit]
 run = "hk run pre-commit"

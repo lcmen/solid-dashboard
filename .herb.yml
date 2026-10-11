@@ -1,0 +1,14 @@
+version: 0.11.0
+framework: actionview
+
+linter:
+  enabled: true
+  failLevel: error
+
+formatter:
+  enabled: true
+  indentWidth: 2
+  indentStyle: space
+  rewriter:
+    pre:
+      - tailwind-class-sorter
