@@ -6,7 +6,8 @@ module SolidDashboard
     isolate_namespace SolidDashboard
 
     initializer "solid_dashboard.assets" do |app|
-      app.config.assets.precompile += %w[solid_dashboard/application.css]
+      app.config.assets.paths << root.join("app/assets/javascript").to_s
+      app.config.assets.precompile += %w[solid_dashboard/application.css solid_dashboard/application.js]
     end
   end
 end
