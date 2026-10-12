@@ -22,5 +22,12 @@
     </article>
   </section>
 
+  <section aria-label="Demo cache entries">
+    <h2>Cache entries</h2>
+    <p>Create sample entries in Solid Cache or clear the cache.</p>
+    <%= button_to "Create sample cache entries", create_cache_entries_path %>
+    <%= button_to "Clear cache", clear_cache_path, data: {turbo_confirm: "Clear all entries from the cache?"} %>
+  </section>
+
   <%= link_to "Open dashboard", ENV.fetch("DASHBOARD_MOUNT", "/solid-dashboard") %>
 </main>
