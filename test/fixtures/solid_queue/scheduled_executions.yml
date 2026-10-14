@@ -1,0 +1,6 @@
+scheduled:
+  job: scheduled
+  queue_name: slow
+  priority: 0
+  scheduled_at: <%= 1.hour.from_now %>
+  created_at: <%= 1.minute.ago %>

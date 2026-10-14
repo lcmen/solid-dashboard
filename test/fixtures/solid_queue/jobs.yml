@@ -1,0 +1,76 @@
+blocked:
+  class_name: FastJob
+  queue_name: fast
+  active_job_id: blocked-attempt
+  arguments: '{"job_class":"FastJob","arguments":[],"executions":0}'
+  concurrency_key: limited-fast-job
+  scheduled_at: <%= 1.minute.ago %>
+  created_at: <%= 2.minutes.ago %>
+  updated_at: <%= 1.minute.ago %>
+
+completed:
+  class_name: SlowJob
+  queue_name: slow
+  active_job_id: completed-attempt
+  arguments: '{"job_class":"SlowJob","arguments":[],"executions":1}'
+  scheduled_at: <%= 2.minutes.ago %>
+  finished_at: <%= 1.minute.ago %>
+  created_at: <%= 2.minutes.ago %>
+  updated_at: <%= 1.minute.ago %>
+
+failed:
+  id: 1002
+  class_name: FastJob
+  queue_name: fast
+  active_job_id: shared-attempt
+  arguments: '{"job_class":"FastJob","arguments":[],"executions":2,"exception_executions":{},"private":"secret-job-argument"}'
+  scheduled_at: <%= 1.minute.ago %>
+  created_at: <%= 2.minutes.ago %>
+  updated_at: <%= 1.minute.ago %>
+
+oldest_attempt:
+  id: 1000
+  class_name: FastJob
+  queue_name: fast
+  active_job_id: shared-attempt
+  arguments: '{"job_class":"FastJob","arguments":[],"executions":0}'
+  finished_at: <%= 3.minutes.ago %>
+  created_at: <%= 4.minutes.ago %>
+  updated_at: <%= 3.minutes.ago %>
+
+pending:
+  class_name: FastJob
+  queue_name: fast
+  active_job_id: pending-attempt
+  arguments: '{"job_class":"FastJob","arguments":[],"executions":0}'
+  scheduled_at: <%= 1.minute.ago %>
+  created_at: <%= 2.minutes.ago %>
+  updated_at: <%= 1.minute.ago %>
+
+retried:
+  id: 1001
+  class_name: FastJob
+  queue_name: fast
+  active_job_id: shared-attempt
+  arguments: '{"job_class":"FastJob","arguments":[],"executions":1}'
+  finished_at: <%= 1.minute.ago %>
+  created_at: <%= 3.minutes.ago %>
+  updated_at: <%= 1.minute.ago %>
+
+running:
+  class_name: FastJob
+  queue_name: fast
+  active_job_id: running-attempt
+  arguments: '{"job_class":"FastJob","arguments":[],"executions":1}'
+  scheduled_at: <%= 1.minute.ago %>
+  created_at: <%= 2.minutes.ago %>
+  updated_at: <%= 1.minute.ago %>
+
+scheduled:
+  class_name: SlowJob
+  queue_name: slow
+  active_job_id: scheduled-attempt
+  arguments: '{"job_class":"SlowJob","arguments":[],"executions":0}'
+  scheduled_at: <%= 1.hour.from_now %>
+  created_at: <%= 2.minutes.ago %>
+  updated_at: <%= 1.minute.ago %>

@@ -1,0 +1,112 @@
+<section aria-label="Job metadata">
+  <dl class="my-4 grid gap-x-6 gap-y-4 sm:grid-cols-2">
+    <div>
+      <dt class="text-muted">Status</dt>
+      <dd><%= job_status_label(job) %></dd>
+    </div>
+
+    <div>
+      <dt class="text-muted">Queue</dt>
+      <dd><%= job.queue_name %></dd>
+    </div>
+
+    <div>
+      <dt class="text-muted">Active Job ID</dt>
+
+      <dd class="break-all">
+        <%= job.active_job_id.presence || "Unavailable" %>
+      </dd>
+    </div>
+
+    <div>
+      <dt class="text-muted">Priority</dt>
+      <dd><%= job.priority %></dd>
+    </div>
+
+    <div>
+      <dt class="text-muted">Created at</dt>
+      <dd><%= job.created_at %></dd>
+    </div>
+
+    <div>
+      <dt class="text-muted">Scheduled at</dt>
+      <dd><%= job.scheduled_at || "Unavailable" %></dd>
+    </div>
+
+    <div>
+      <dt class="text-muted">Finished at</dt>
+      <dd><%= job.finished_at || "Unavailable" %></dd>
+    </div>
+
+    <div class="min-w-0 sm:col-span-2">
+      <dt class="text-muted">Arguments</dt>
+
+      <dd>
+        <pre class="bg-secondary-50 mt-2 overflow-x-auto rounded-md p-3 text-xs"><%= formatted_job_arguments(job) %></pre>
+      </dd>
+    </div>
+  </dl>
+
+  <% if job.status == "failed" %>
+    <div class="mt-4 flex flex-wrap gap-4">
+      <%= form_with url: retry_job_path(job), method: :post do |form| %>
+        <label class="form-label"><%= form.check_box :confirmed, {required: true, class: "form-checkbox"}, "1", "0" %> Confirm retry</label>
+        <%= form.submit "Retry job", class: "btn btn-primary btn-sm" %>
+      <% end %>
+
+      <%= form_with url: job_path(job), method: :delete do |form| %>
+        <label class="form-label"><%= form.check_box :confirmed, {required: true, class: "form-checkbox"}, "1", "0" %> Confirm discard</label>
+        <%= form.submit "Discard job", class: "btn btn-danger btn-sm" %>
+      <% end %>
+    </div>
+  <% end %>
+</section>
+
+<section class="mt-6" aria-labelledby="history-heading">
+  <div class="mb-4">
+    <h2 id="history-heading" class="h6">Retained attempts</h2>
+
+    <p class="text-muted mt-2">
+      Only retained job records are available. Earlier attempts can be removed
+      by Solid Queue cleanup. A manual retry reuses its job record.
+    </p>
+
+    <% if job.active_job_id.blank? %>
+      <p class="text-muted mt-2">
+        This job has no Active Job ID. Related attempts cannot be identified.
+      </p>
+    <% end %>
+  </div>
+
+  <div class="table-wrapper">
+    <table
+      class="table border-0 whitespace-nowrap"
+      aria-labelledby="history-heading"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Job ID</th>
+          <th scope="col">Status</th>
+          <th scope="col">Created at</th>
+          <th scope="col">Finished at</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% attempts.each do |attempt| %>
+          <tr>
+            <td>
+              <%= link_to "##{attempt.id}", job_path(attempt), class: "link" %>
+            </td>
+
+            <td><%= job_status_label(attempt) %></td>
+            <td><%= attempt.created_at %></td>
+            <td><%= attempt.finished_at || "—" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= render "solid_dashboard/jobs/pagination", list: attempts, url: job_path(job), filters: params.permit(:per_page).to_h %>
+</section>

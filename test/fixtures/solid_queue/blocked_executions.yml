@@ -1,0 +1,7 @@
+blocked:
+  job: blocked
+  queue_name: fast
+  priority: 0
+  concurrency_key: limited-fast-job
+  expires_at: <%= 1.hour.from_now %>
+  created_at: <%= 1.minute.ago %>

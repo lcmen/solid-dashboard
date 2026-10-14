@@ -1,0 +1,4 @@
+failed:
+  job_id: 1002
+  error: '{"exception_class":"RuntimeError","message":"secret-exception-message","backtrace":["secret-exception-trace"]}'
+  created_at: <%= 1.minute.ago %>

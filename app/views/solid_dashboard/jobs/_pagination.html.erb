@@ -1,0 +1,16 @@
+<nav
+  aria-label="Pagination"
+  class="flex-between border-secondary-100 gap-3 border-t px-5 py-4"
+>
+  <span class="text-muted">Page <%= list.page %> of <%= [list.pages, 1].max %></span>
+
+  <div class="flex gap-2">
+    <% if list.page > 1 %>
+      <%= link_to "Previous", "#{url}?#{filters.merge(page: list.page - 1).to_query}", class: "btn btn-secondary btn-sm" %>
+    <% end %>
+
+    <% if list.page < list.pages %>
+      <%= link_to "Next", "#{url}?#{filters.merge(page: list.page + 1).to_query}", class: "btn btn-secondary btn-sm" %>
+    <% end %>
+  </div>
+</nav>

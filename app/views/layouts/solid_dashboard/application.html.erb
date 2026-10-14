@@ -29,6 +29,12 @@
         <div class="mx-auto max-w-7xl p-4 sm:px-8 sm:py-6">
           <%= render "solid_dashboard/shared/page_header", title: content_for(:title), description: content_for(:description) %>
 
+          <% flash.each do |_type, message| %>
+            <div role="status" class="alert alert-info mb-4">
+              <%= message %>
+            </div>
+          <% end %>
+
           <%= yield %>
         </div>
       </main>

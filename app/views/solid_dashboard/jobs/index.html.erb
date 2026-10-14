@@ -1,12 +1,13 @@
 <% content_for :title, "Jobs" %>
-
 <% content_for :description, "Jobs from Solid Queue." %>
 
 <%= render "solid_dashboard/shared/card_group", values: {
-  "Pending" => 0,
-  "Running" => 0,
-  "Scheduled" => 0,
-  "Failed" => 0
+  "Pending" => app.jobs.pending_count,
+  "Scheduled" => app.jobs.scheduled_count,
+  "Running" => app.jobs.running_count,
+  "Finished" => app.jobs.finished_count,
+  "Failed" => app.jobs.failed_count,
+  "Retried" => app.jobs.retried_count
 } %>
 
 <section
@@ -15,8 +16,30 @@
 >
   <div class="flex-between border-secondary-100 gap-4 border-b px-5 py-4">
     <h2 id="jobs-heading" class="h6">Job executions</h2>
-    <span class="badge badge-gray">0 jobs</span>
+    <span class="badge badge-gray"><%= @jobs.total %> jobs</span>
   </div>
+
+  <%= form_with url: jobs_path, method: :get, class: "grid items-end gap-4 p-5 sm:grid-cols-2 lg:grid-cols-4" do |form| %>
+    <div>
+      <%= form.label :q, "Class name or job ID", class: "form-label" %>
+      <%= form.search_field :q, value: params[:q], class: "form-input h-10" %>
+    </div>
+
+    <div>
+      <%= form.label :status, "Status", class: "form-label" %>
+      <%= form.select :status, SolidDashboard::Job::STATUSES.map { |status| [status.capitalize, status] }, {include_blank: "All statuses", selected: params[:status]}, class: "form-select h-10" %>
+    </div>
+
+    <div>
+      <%= form.label :queue_name, "Queue", class: "form-label" %>
+      <%= form.select :queue_name, app.jobs.queues, {include_blank: "All queues", selected: params[:queue_name]}, class: "form-select h-10" %>
+    </div>
+
+    <div class="flex items-end gap-2">
+      <%= form.submit "Filter", class: "btn btn-primary h-10" %>
+      <%= link_to "Reset", jobs_path, class: "btn btn-secondary h-10" %>
+    </div>
+  <% end %>
 
   <div class="table-wrapper">
     <table
@@ -35,10 +58,38 @@
       </thead>
 
       <tbody>
-        <tr>
-          <td colspan="6" class="text-secondary-500 text-center">No jobs</td>
-        </tr>
+        <% @jobs.each do |job| %>
+          <tr>
+            <td>
+              <%= job.class_name %>
+              <span class="text-muted">#<%= job.id %></span>
+            </td>
+
+            <td><%= job.queue_name %></td>
+
+            <td>
+              <span class="badge <%= job_status_class(job) %>"><%= job_status_label(job) %></span>
+            </td>
+
+            <td><%= job.scheduled_at || "—" %></td>
+            <td><%= job.finished_at || "—" %></td>
+
+            <td>
+              <%= link_to "Details", job_path(job), class: "link", aria: {label: "Details for #{job.class_name} ##{job.id}"} %>
+            </td>
+          </tr>
+        <% end %>
+
+        <% if @jobs.empty? %>
+          <tr>
+            <td colspan="6" class="text-muted text-center">
+              No jobs match these filters.
+            </td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
+
+  <%= render "solid_dashboard/jobs/pagination", list: @jobs, url: jobs_path, filters: params.permit(:q, :status, :queue_name, :per_page).to_h %>
 </section>

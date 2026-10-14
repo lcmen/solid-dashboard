@@ -1,3 +1,4 @@
 gem "rails", "~> 8.0.0"
+gem "json", "< 3"
 
 eval_gemfile "shared.gemfile"

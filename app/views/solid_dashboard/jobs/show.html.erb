@@ -1,0 +1,7 @@
+<% content_for :title, "#{@job.class_name} ##{@job.id}" %>
+<% content_for :description, "Job metadata and retained execution records." %>
+<% content_for :hide_refresh, "true" %>
+
+<div class="card border-secondary-200 border p-6 shadow-none">
+  <%= render "solid_dashboard/jobs/details", job: @job, attempts: @attempts %>
+</div>
